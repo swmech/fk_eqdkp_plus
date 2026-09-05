@@ -40,6 +40,10 @@ RUN a2ensite apache-ssl.conf
 # Move your code into the container's web root
 COPY ./src /var/www/html/
 
+# Ensure only mpm_prefork is enabled to prevent duplicate MPM startup crashes
+RUN a2dismod mpm_event mpm_worker || true \
+    && a2enmod mpm_prefork
+
 # Set permissions so Apache can serve the files
 RUN chown -R www-data:www-data /var/www/html
 
