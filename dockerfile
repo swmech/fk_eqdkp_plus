@@ -41,7 +41,9 @@ RUN a2ensite apache-ssl.conf
 COPY ./src /var/www/html/
 
 # Ensure only mpm_prefork is enabled to prevent duplicate MPM startup crashes
-RUN a2dismod mpm_event mpm_worker || true \
+RUN rm -f /etc/apache2/mods-enabled/mpm_event.* \
+    && rm -f /etc/apache2/mods-enabled/mpm_worker.* \
+    && a2dismod mpm_event mpm_worker || true \
     && a2enmod mpm_prefork
 
 # Set permissions so Apache can serve the files
