@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="template" version="2.3.0">
+	<name>EQdkp BlueSky</name>
+	<author>Asitara, Inkraja</author>
+	<authorEmail></authorEmail>
+	<authorUrl>http://eqdkp-plus.eu</authorUrl>
+	<creationDate>2013-01-12T10:26:19+00:00</creationDate>
+	<copyright>Asitara, Inkraja</copyright>
+	<license>AGPL v3</license>
+	<version>2.3.3</version>
+	<description></description>
+	<folder>eqdkp_bluesky</folder>
+</install>

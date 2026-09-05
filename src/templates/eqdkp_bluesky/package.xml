@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="template" version="2.3.0.17">
+	<folder>eqdkp_bluesky</folder>
+	<name>EQdkp Bluesky</name>
+	<author>Inkraja</author>
+	<authorEmail>inkraja@arcor.de</authorEmail>
+	<creationDate>1561889974</creationDate>
+	<copyright>(C)2016 Inkraja</copyright>
+	<version>2.3.3</version>
+	<level>stable</level>
+</install>

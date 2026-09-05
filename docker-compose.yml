@@ -1,0 +1,44 @@
+services:
+  # The PHP + Apache Service
+  web:
+    build: .
+    container_name: eqdkp_web
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./src:/var/www/html
+    environment:
+      - EQDKP_DB_HOST=db
+      - EQDKP_DB_NAME=eqdkp_db
+      - EQDKP_DB_USER=${DB_USER}
+      - EQDKP_DB_PW=${DB_PASSWORD}
+      - EQDKP_ENCRYPTION_KEY=${ENCRYPTION_KEY}
+    depends_on:
+      - db
+
+  # The MySQL Database Service
+  db:
+    image: mysql:5.7
+    container_name: eqdkp_db_container
+    restart: always
+    environment:
+      MYSQL_DATABASE: eqdkp_db
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db_data:/var/lib/mysql
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: eqdkp_mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - default
+
+volumes:
+  db_data:
+

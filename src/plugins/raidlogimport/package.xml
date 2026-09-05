@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="plugin" version="2.3.0.17">
+	<folder>raidlogimport</folder>
+	<name>Raidlogimport</name>
+	<author>Hoofy</author>
+	<authorEmail>bloodyhoof@gmx.net</authorEmail>
+	<creationDate>1610002986</creationDate>
+	<copyright>(C)2016 Hoofy</copyright>
+	<version>0.7.3.14</version>
+	<level>stable</level>
+</install>

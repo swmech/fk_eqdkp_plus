@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:c="http://base.google.com/cns/1.0">
+	<channel>
+		<title>Calendar Raids</title>
+		<description>Frayed Knot EQdkp-Plus - Calendar Raids</description>
+		<link>https://localhost/</link>
+		<language>EN-EN</language>
+		<pubDate>Sat, 05 Sep 2026 20:36:31 +0000</pubDate>
+		<generator>EQDKP-PLUS Gamer CMS</generator>
+		<atom:link href="https://localhost/data/eqdkp/rss/calendar_raids.xml" type="application/rss+xml" />
+	</channel>
+</rss>

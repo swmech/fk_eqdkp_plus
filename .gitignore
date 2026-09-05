@@ -1,0 +1,39 @@
+# Ignore the .env file (contains sensitive info). Backed up in PasswordSafe
+.env
+
+# Ignore the database data folder (if it's in your project root)
+mysql_data/
+
+# Ignore all user uploads, images, backups, and caches across instances
+src/data/*/files/*
+src/data/*/itt_cache/*
+src/data/cache/*
+src/data/*/cache/*
+src/data/*/backup/*
+src/data/eqdkp/backup/*
+
+# Preserve directory structures in version control
+!src/data/*/files/.gitkeep
+!src/data/*/files/users/.gitkeep
+!src/data/*/itt_cache/.gitkeep
+!src/data/*/cache/.gitkeep
+!src/data/*/backup/.gitkeep
+
+# Ignore temporary files
+src/tmp/
+src/cache/
+
+# Ignore local OS junk
+.DS_Store
+Thumbs.db
+
+# Ignore temporary files
+src/data/*/tmp/*
+src/data/tmp/*
+
+# Ignore log files
+src/data/*/logs/*
+*.log
+
+# ignore VIM backups
+*~

@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # If your site is in a subfolder (like /site/), change this to: RewriteBase /site/
+    RewriteBase /
+
+    # Stop processing if it's a real file or directory
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Send everything else to index.php
+    RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+</IfModule>
+
+# Optional: Prevent directory browsing for security
+Options -Indexes
