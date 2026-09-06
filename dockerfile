@@ -55,6 +55,9 @@ RUN rm -f /etc/apache2/mods-enabled/mpm_event.* \
 # Set permissions so Apache can serve the files
 RUN chown -R www-data:www-data /var/www/html
 
+COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
 # Expose HTTP and HTTPS
 EXPOSE 80
 EXPOSE 443
