@@ -1,7 +1,8 @@
 FROM php:7.4-apache
 
 # 1. Install system dependencies for extensions (GD, Zip, MBString, etc.)
-RUN apt-get update && apt-get install -y \
+RUN apt-get update || apt-get update --fix-missing \
+    && apt-get install -y --no-install-recommends --fix-missing \
     libpng-dev \
     libjpeg-dev \
     libfreetype6-dev \
@@ -52,4 +53,7 @@ RUN chown -R www-data:www-data /var/www/html
 # Expose HTTP and HTTPS
 EXPOSE 80
 EXPOSE 443
+
+# Run entrypoint script at startup to handle MPM conflict
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 
