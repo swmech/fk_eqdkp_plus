@@ -11,3 +11,4 @@ a2enmod mpm_prefork
 
 # Hand execution off to standard Apache foreground process
 exec apache2-foreground
+
