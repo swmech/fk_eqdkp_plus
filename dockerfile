@@ -53,7 +53,8 @@ RUN rm -f /etc/apache2/mods-enabled/mpm_event.* \
     && a2enmod mpm_prefork
 
 # Set permissions so Apache can serve the files
-RUN chown -R www-data:www-data /var/www/html
+RUN chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/data
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
