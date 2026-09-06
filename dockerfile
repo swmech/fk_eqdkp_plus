@@ -1,10 +1,11 @@
 FROM php:7.4-apache
 
 # 1. Install system dependencies for extensions (GD, Zip, MBString, etc.)
+# 1. Point main repos to archive.debian.org and strip dead security/updates lines
 RUN sed -i 's/deb.debian.org/archive.debian.org/g' /etc/apt/sources.list \
-    && sed -i 's/security.debian.org/archive.debian.org/g' /etc/apt/sources.list \
-    && sed -i '/stretch-updates/d' /etc/apt/sources.list \
-    && sed -i '/buster-updates/d' /etc/apt/sources.list \
+    && sed -i '/security.debian.org/d' /etc/apt/sources.list \
+    && sed -i '/debian-security/d' /etc/apt/sources.list \
+    && sed -i '/updates/d' /etc/apt/sources.list \
     && apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install -y --no-install-recommends \
     libpng-dev \
