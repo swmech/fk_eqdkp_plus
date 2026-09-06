@@ -22,5 +22,5 @@ define("INSTALLED_VERSION", "2.3.39.0");
 
 $encryptionKey = $_ENV['EQDKP_ENCRYPTION_KEY'] ?? $_SERVER['EQDKP_ENCRYPTION_KEY'] ?? getenv('EQDKP_ENCRYPTION_KEY') ?: '';
 
-define('EQDKP_INSTALLED', true);
+define('EQDKP_INSTALLED', false);
 ?>
