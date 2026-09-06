@@ -35,13 +35,13 @@ RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
 RUN a2enmod ssl rewrite
 
 # Copy the certs
-COPY ./certs/server.crt /etc/ssl/certs/server.crt
-COPY ./certs/server.key /etc/ssl/private/server.key
+#COPY ./certs/server.crt /etc/ssl/certs/server.crt
+#COPY ./certs/server.key /etc/ssl/private/server.key
 
-COPY apache-ssl.conf /etc/apache2/sites-available/apache-ssl.conf
+#COPY apache-ssl.conf /etc/apache2/sites-available/apache-ssl.conf
 
 # Enable the SSL site
-RUN a2ensite apache-ssl.conf
+#RUN a2ensite apache-ssl.conf
 
 # Move your code into the container's web root
 COPY ./src /var/www/html/
@@ -60,7 +60,7 @@ RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
 # Expose HTTP and HTTPS
 EXPOSE 80
-EXPOSE 443
+#EXPOSE 443
 
 # Run entrypoint script at startup to handle MPM conflict
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
