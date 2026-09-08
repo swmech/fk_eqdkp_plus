@@ -1,0 +1,18 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /plugins/
+Disallow: /system/
+Disallow: /cron.php
+Crawl-delay: 10
+
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
