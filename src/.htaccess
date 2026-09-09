@@ -1,3 +1,24 @@
+# Block specific abusive IPs at the server level
+<RequireAll>
+    Require all granted
+    # Require not ip 47.82.13.151
+    # full alibaba range
+    Require not ip 47.82.13.0/24
+</RequireAll>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC]
+    RewriteRule .* - [F,L]
+
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^(.*)$ index.php?$1 [L,QSA]
+</IfModule>
+
+Options -Indexes
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
@@ -7,6 +28,10 @@
     # Block specific crawlers and bots instantly with a 403 Forbidden
     RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC]
     RewriteRule .* - [F,L]
+<RequireAll>
+    Require all granted
+    Require not ip 47.82.13.0/24
+</RequireAll>
 
     # Stop processing if it's a real file or directory
     RewriteCond %{REQUEST_FILENAME} !-d
