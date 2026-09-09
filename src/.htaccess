@@ -1,45 +1,19 @@
-# Block specific abusive IPs at the server level
-<RequireAll>
-    Require all granted
-    # Require not ip 47.82.13.151
-    # full alibaba range
-    Require not ip 47.82.13.0/24
-</RequireAll>
-
 <IfModule mod_rewrite.c>
     RewriteEngine On
     RewriteBase /
 
-    RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC]
+    # --- Block Known AI Bots & Scraping Networks ---
+    RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC,OR]
+    
+    # Block major Alibaba Cloud IP prefixes (47.x.x.x, 8.208-223.x.x, 149.129.x.x, 161.117.x.x, 170.33.x.x)
+    RewriteCond %{REMOTE_ADDR} ^(47\.|8\.2[0-2][0-9]\.|149\.129\.|161\.117\.|170\.33\.)
     RewriteRule .* - [F,L]
 
+    # Existing rewrite conditions
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^(.*)$ index.php?$1 [L,QSA]
 </IfModule>
 
 Options -Indexes
-<IfModule mod_rewrite.c>
-    RewriteEngine On
 
-    # If your site is in a subfolder (like /site/), change this to: RewriteBase /site/
-    RewriteBase /
-
-    # Block specific crawlers and bots instantly with a 403 Forbidden
-    RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC]
-    RewriteRule .* - [F,L]
-<RequireAll>
-    Require all granted
-    Require not ip 47.82.13.0/24
-</RequireAll>
-
-    # Stop processing if it's a real file or directory
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-
-    # Send everything else to index.php
-    RewriteRule ^(.*)$ index.php?$1 [L,QSA]
-</IfModule>
-
-# Optional: Prevent directory browsing for security
-Options -Indexes
