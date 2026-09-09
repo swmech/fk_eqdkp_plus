@@ -4,6 +4,10 @@
     # If your site is in a subfolder (like /site/), change this to: RewriteBase /site/
     RewriteBase /
 
+    # Block specific crawlers and bots instantly with a 403 Forbidden
+    RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC]
+    RewriteRule .* - [F,L]
+
     # Stop processing if it's a real file or directory
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f

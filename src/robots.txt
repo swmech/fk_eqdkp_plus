@@ -16,3 +16,6 @@ Disallow: /
 
 User-agent: CCBot
 Disallow: /
+
+User-agent: Claude-SearchBot
+Disallow: /
