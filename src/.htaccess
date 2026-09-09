@@ -2,18 +2,20 @@
     RewriteEngine On
     RewriteBase /
 
-    # --- Block Known AI Bots & Scraping Networks ---
+    # --- Block Bad User-Agents ---
     RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC,OR]
     
-    # Block major Alibaba Cloud IP prefixes (47.x.x.x, 8.208-223.x.x, 149.129.x.x, 161.117.x.x, 170.33.x.x)
-    RewriteCond %{REMOTE_ADDR} ^(47\.|8\.2[0-2][0-9]\.|149\.129\.|161\.117\.|170\.33\.)
+    # --- Block Alibaba IP Ranges (checks both direct IP and Railway Proxy Header) ---
+    RewriteCond %{HTTP:X-Forwarded-For} ^47\.(79|82)\. [OR]
+    RewriteCond %{REMOTE_ADDR} ^47\.(79|82)\.
     RewriteRule .* - [F,L]
 
-    # Existing rewrite conditions
+    # Stop processing if it's a real file or directory
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Send everything else to index.php
     RewriteRule ^(.*)$ index.php?$1 [L,QSA]
 </IfModule>
 
 Options -Indexes
-
