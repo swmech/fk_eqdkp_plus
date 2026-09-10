@@ -7,7 +7,14 @@
     
     # --- Block Alibaba IP Ranges (checks both direct IP and Railway Proxy Header) ---
     RewriteCond %{HTTP:X-Forwarded-For} ^47\.(79|82)\. [OR]
-    RewriteCond %{REMOTE_ADDR} ^47\.(79|82)\.
+    RewriteCond %{REMOTE_ADDR} ^47\.(79|82)\. [OR]
+
+    # --- Block Scraper IP Ranges (China Unicom 116.179.x.x & US 66.118.56.x) ---
+    RewriteCond %{HTTP:X-Forwarded-For} ^116\.179\. [OR]
+    RewriteCond %{REMOTE_ADDR} ^116\.179\. [OR]
+    RewriteCond %{HTTP:X-Forwarded-For} ^66\.118\.(5[6-9]|6[0-3])\. [OR]
+    RewriteCond %{REMOTE_ADDR} ^66\.118\.(5[6-9]|6[0-3])\.
+
     RewriteRule .* - [F,L]
 
     # Stop processing if it's a real file or directory
