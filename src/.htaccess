@@ -2,9 +2,50 @@
     RewriteEngine On
     RewriteBase /
 
-    # --- Block Bad User-Agents ---
+    # --- Block major bots - don't need to help them train on our expense ---
     RewriteCond %{HTTP_USER_AGENT} (Claude-SearchBot|ClaudeBot|GPTBot|ChatGPT-User|AhrefsBot|SemrushBot) [NC,OR]
     
+    # --- Block cooperative self-exposing user agents ---
+    RewriteCond %{HTTP_USER_AGENT} (bot|crawl|spider|slurp|search|archive|fetch|parser|scraper) [NC,OR]
+    RewriteCond %{HTTP_USER_AGENT} ^BlackWidow [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^ChinaClaw [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^DISCo [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Download\ Demon [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^eCatch [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^EmailCollector [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^ExtractorPro [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Go\-Zilla [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^HTTrack [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Image\ Stripper [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^JetCar [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^LeechFTP [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Microsoft.URL [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^NetAnts [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^NetMechanic [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Offline\ Explorer [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^PageGrabber [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Papa\ Foto [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Pavuk [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^ReGet [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Scooter [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Siphon [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^SiteSnagger [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Teleport\ Pro [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^VoidEYE [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Web\ Image\ Collector [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Web\ Sucker [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebAuto [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebCopier [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebFetch [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebReaper [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebSauger [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebStripper [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebWhacker [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^WebZIP [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Wget [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Widow [OR]
+    RewriteCond %{HTTP_USER_AGENT} ^Zeus [NC,OR]
+
     # --- Block Alibaba IP Ranges (checks both direct IP and Railway Proxy Header) ---
     RewriteCond %{HTTP:X-Forwarded-For} ^47\.(79|82)\. [OR]
     RewriteCond %{REMOTE_ADDR} ^47\.(79|82)\. [OR]
