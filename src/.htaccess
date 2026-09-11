@@ -57,6 +57,10 @@
     RewriteCond %{REMOTE_ADDR} ^106\.49\. [OR]
     RewriteCond %{HTTP:X-Forwarded-For} ^119\.249\. [OR]
     RewriteCond %{REMOTE_ADDR} ^119\.249\. [OR]
+    RewriteCond %{HTTP:X-Forwarded-For} ^111\.225\. [OR]
+    RewriteCond %{REMOTE_ADDR} ^111\.225\. [OR]
+    RewriteCond %{HTTP:X-Forwarded-For} ^153\.66\. [OR]
+    RewriteCond %{REMOTE_ADDR} ^153\.66\. [OR]
     RewriteCond %{HTTP:X-Forwarded-For} ^66\.118\.(5[6-9]|6[0-3])\. [OR]
     RewriteCond %{REMOTE_ADDR} ^66\.118\.(5[6-9]|6[0-3])\.
 
